@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import patch, Mock
 
 APP=Path(__file__).resolve().parents[1]
-SCRIPT=APP/'generate_legal_tables_v16_4_5.py'
+SCRIPT=APP/'generate_legal_tables_v16_4_6.py'
 spec=importlib.util.spec_from_file_location('hipolaw_v163',SCRIPT)
 mod=importlib.util.module_from_spec(spec)
 sys.modules[spec.name]=mod

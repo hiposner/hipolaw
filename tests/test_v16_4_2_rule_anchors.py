@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 BASE = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location('hipolaw_v1642', BASE / 'generate_legal_tables_v16_4_5.py')
+spec = importlib.util.spec_from_file_location('hipolaw_v1642', BASE / 'generate_legal_tables_v16_4_6.py')
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 
