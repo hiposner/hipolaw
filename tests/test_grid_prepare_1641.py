@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 BASE=Path(__file__).resolve().parents[1]
-spec=importlib.util.spec_from_file_location('hipolaw_gridfix',BASE/'generate_legal_tables_v16_4_2.py')
+spec=importlib.util.spec_from_file_location('hipolaw_gridfix',BASE/'generate_legal_tables_v16_4_5.py')
 mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
 
 class CallableSections:

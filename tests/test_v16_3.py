@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import patch, Mock
 
 APP=Path(__file__).resolve().parents[1]
-SCRIPT=APP/'generate_legal_tables_v16_4_2.py'
+SCRIPT=APP/'generate_legal_tables_v16_4_5.py'
 spec=importlib.util.spec_from_file_location('hipolaw_v163',SCRIPT)
 mod=importlib.util.module_from_spec(spec)
 sys.modules[spec.name]=mod
@@ -39,9 +39,9 @@ class TestV163GridSetup(unittest.TestCase):
         finally:w.close()
 
     def test_real_lamotte_preflight_legacy(self):
-        source=Path('tests/fixtures/optional_motion.docx')
-        workbook=Path('tests/fixtures/optional_approved.xlsx')
-        if not source.is_file() or not workbook.is_file():self.skipTest('sample source not present')
+        source=Path('/mnt/data/2026-10-11 Opp. to Motion for Judgment DRAFT 5 DC.docx')
+        workbook=Path('/mnt/data/La_Motte_Opposition_V15_Corrected_Headings.xlsx')
+        if not source.is_file() or not workbook.is_file():self.skipTest('La Motte source not present')
         args=mod.preflight(source,workbook)
         self.assertEqual(len(args[0]),37)
         self.assertEqual(len(args[1]),14)

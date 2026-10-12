@@ -4,10 +4,10 @@ from pathlib import Path
 from unittest.mock import patch
 
 BASE=Path(__file__).resolve().parents[1]
-spec=importlib.util.spec_from_file_location('hipolaw_v164',BASE/'generate_legal_tables_v16_4_2.py')
+spec=importlib.util.spec_from_file_location('hipolaw_v164',BASE/'generate_legal_tables_v16_4_5.py')
 mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
-SOURCE=Path('tests/fixtures/optional_motion.docx')
-APPROVED=Path('tests/fixtures/optional_approved.xlsx')
+SOURCE=Path('/mnt/data/2026-10-11 Opp. to Motion for Judgment DRAFT 5 DC.docx')
+APPROVED=Path('/mnt/data/La_Motte_Opposition_V15_Corrected_Headings.xlsx')
 
 class FakeDocument:
     def __init__(self):
@@ -24,7 +24,7 @@ class FakeWord:
         self.quit=False
     def Quit(self):self.quit=True
 
-@unittest.skipUnless(SOURCE.is_file() and APPROVED.is_file(),'sample test files not mounted')
+@unittest.skipUnless(SOURCE.is_file() and APPROVED.is_file(),'La Motte test files not mounted')
 class TestV164GuidedWorkflow(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)

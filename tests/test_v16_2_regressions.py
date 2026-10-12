@@ -10,7 +10,7 @@ import json
 import tempfile
 import fitz
 
-SCRIPT = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_2.py'
+SCRIPT = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_5.py'
 spec = importlib.util.spec_from_file_location('hipolaw_v16', SCRIPT)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
@@ -179,7 +179,7 @@ class TestCourtFilingExport(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path=Path(td)/'ordinary.pdf'
             self.sample_pdf(path,False)
-            with self.assertRaisesRegex(RuntimeError,'PDF/A-1 declaration not found'):
+            with self.assertRaisesRegex(RuntimeError,'FILING BLOCKED: PDF/A identification metadata is missing'):
                 mod.pdfa_safety_audit(path)
 
     def test_xmp_declaration_is_not_misrepresented_as_full_validation(self):
