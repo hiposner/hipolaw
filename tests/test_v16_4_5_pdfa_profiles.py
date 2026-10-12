@@ -10,7 +10,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
-spec=importlib.util.spec_from_file_location('hipolaw_pdfa', ROOT/'generate_legal_tables_v16_4_6.py')
+spec=importlib.util.spec_from_file_location('hipolaw_pdfa', ROOT/'generate_legal_tables_v16_4_7.py')
 mod=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 
