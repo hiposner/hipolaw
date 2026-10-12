@@ -1,0 +1,30 @@
+{
+  "toc_title": {
+    "centered": true,
+    "bold": true
+  },
+  "toa_title": {
+    "centered": true,
+    "bold": true
+  },
+  "category_headings": {
+    "uppercase": true,
+    "bold": true
+  },
+  "toc_entries": {
+    "bold": false
+  },
+  "entry_font_size_pt": 12,
+  "heading_font_size_pt": 12,
+  "pleading_grid": {
+    "line_spacing_pt": 24,
+    "vertical_raise_pt": {
+      "toc": 9.5,
+      "cases": 3.5,
+      "statutes": 12,
+      "other": 12,
+      "rules": 14
+    },
+    "body_header_shift_pt": 9.5
+  }
+}

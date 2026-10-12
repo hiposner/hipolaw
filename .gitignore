@@ -1,0 +1,32 @@
+# Windows / Python build output
+dist/
+build/
+*.spec
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.env
+.env.*
+
+# HipoLaw generated files and legal-client material
+HipoLaw_Prepared_*/
+*_HipoLaw_Prepared.docx
+*PREVIEW_NOT_FOR_FILING*
+HipoLaw_AUDIT.txt
+*_AUDIT.txt
+*.docx
+*.pdf
+*.xlsx
+
+# Blank approved public templates only
+!05_Review_Template_V15.xlsx
+!05_Review_Template_V16_3.xlsx
+!05_Review_Template_V16_4.xlsx
+
+# Temporary and local artifacts
+.DS_Store
+Thumbs.db
+*.log
+*.tmp

@@ -1,0 +1,56 @@
+Create the HipoLaw V16.4.2 approval/review Excel workbook for the Word motion I am attaching to this ChatGPT conversation. This is a legal Table of Contents and Table of Authorities workflow. Follow these instructions closely; do not invent citations, passages, page numbers, or legal authority.
+
+PREPARED DOCUMENT IDENTITY — COPY EXACTLY INTO THE WORKBOOK:
+Filename: <<MOTION_FILENAME>>
+SHA256: <<MOTION_SHA256>>
+First body anchor (exact Word heading text): <<FIRST_BODY_HEADING>>
+Align entire motion to 28-line pleading grid: <<GRID_SETTING>>
+
+This document has ALREADY been prepared by the HipoLaw desktop app. Analyze the attached Word document, not a PDF or any other prior version. Do not rewrite or alter the Word motion. Create ONE downloadable .xlsx workbook containing four sheets IN THIS ORDER: Authorities, Contents, Setup, Aliases.
+
+AUTHORITIES: Use exactly seven columns, these exact headers and order:
+Citation in motion | AI suggestion | Why | Decision | Your edit (if Edit) | FINAL entry used | Type
+
+Extract every distinct case, statute, court rule, regulation, and other relevant authority cited in the motion, including footnotes, in the order of first occurrence. For every row:
+- Citation in motion: the EXACT source string used for citation anchoring in the Word document. Exact punctuation matters; do not substitute paraphrases.
+- AI suggestion: proper TOA display entry, with the full citation and proper case spelling. Preserve applicable legal citation content; do not invent reporters, years or pinpoint cites.
+- Why: succinct explanation of formatting/normalization choice or uncertainty.
+- Decision: enter EXACTLY Accept by default when the source match and suggested display entry appear correct. This is a preliminary AI recommendation, not a substitute for attorney review. If any material error or uncertainty is suspected (e.g., questionable citation, incorrect case name, incomplete reference, doubtful authority type, ambiguous source match), LEAVE Decision BLANK, visibly flag that row, and explain precisely what requires review in Why. Use Reject only when the item is clearly not a TOA authority, and Edit only when you are confident of the necessary correction and populate Your edit (if Edit). Never silently approve an item you think may be wrong.
+- Your edit (if Edit): leave blank unless Decision is Edit; in that case supply the proposed replacement explicitly for the attorney to verify.
+- FINAL entry used: leave blank; the desktop generator computes it from approved Decision and edit.
+- Type: Case, Statute, Rule, Court Rule, Evidence Rule, Procedural Rule, Regulation, Constitution or Other, as applicable.
+Use one row per authority, grouping multiple occurrences and short-form citations with Aliases. Case names will be italicized by HipoLaw; do not inject extra markdown or literal asterisks into cell values. Flag doubtful authorities in Why.
+- CRITICAL rule-subsection distinction: `Rule 50` (without a subsection), `Rule 50(a)`, and `Rule 50(b)` are not interchangeable. List a standalone unsuffixed Rule 50 authority ONLY when an independent `Rule 50` reference actually appears in the Word document; do not infer one from the beginning of `Rule 50(a)` or `Rule 50(b)`. If it appears independently, keep it distinct. This rule applies similarly to other numbered rules.
+- On the Aliases sheet, NEVER associate an ambiguous broad phrase such as `Rule 50` with a narrower `Rule 50(a)` or `Rule 50(b)` entry. Record only short forms that unambiguously identify the same authority. Leave uncertainty for attorney review rather than manufacturing an overlapping match.
+
+CONTENTS: Use exactly seven columns, these exact headers and order:
+Heading in motion | AI suggestion | Why | Decision | Your edit (if Edit) | FINAL heading used | Level
+
+Identify the EXACT body heading paragraphs, in document order, including heading paragraph terminal periods in the 'Heading in motion' source column. That column must match the Word paragraph text exactly, not a normalized display string. AI suggestion should have the desired heading text WITHOUT heading numbering and WITHOUT a terminal period. HipoLaw will add the ACTUAL Word Roman numerals/letters/subnumbers and will remove terminal periods from the display only. Do not use bold or markdown in cells. For Decision, enter EXACTLY Accept by default where the heading match and suggested text appear correct. If a heading match, level, or suggested wording appears incorrect or uncertain, leave Decision BLANK, flag the row, and explain the concern in Why. Use Edit only with a clearly proposed replacement in Your edit (if Edit), and Reject only for a clearly nonheading entry. Level 1 main Roman sections, Level 2 letter sections, Level 3 lower roman subdivisions. Never invent headings or include the cover caption as a heading.
+
+SETUP: Exactly three columns: Setting | Answer | How to complete
+Include at least these rows with these values:
+Motion type | [identify faithfully from the motion] | Describe motion type
+First body anchor | <<FIRST_BODY_HEADING>> | Exact text of first numbered motion-body paragraph
+Pleading grid | Auto | Auto detects 28-line pleading paper
+Existing tables | No | Source should not already have a TOC or TOA
+Verified by | | Attorney/reviewer may fill
+Notes | | Uncertainties and manual-review issues
+Align entire motion to 28-line pleading grid | <<GRID_SETTING>> | Set during HipoLaw Step 1; do not change it when preparing final tables
+HipoLaw document SHA256 | <<MOTION_SHA256>> | Identifies the exact uploaded prepared Word file
+HipoLaw document filename | <<MOTION_FILENAME>> | Must match the selected HipoLaw motion
+
+ALIASES: Exactly three columns:
+Citation in motion | Exact additional wording found in motion | Why this short form belongs to that citation
+For EACH short-form case/rule reference, list its exact wording if confidently attributable to the full authority. Where ambiguous, explicitly flag it for human review instead of guessing. Do not assign bare 'Id.' references automatically unless unmistakable; a note in Why is better than false attribution.
+
+SPREADSHEET USABILITY — IMPORTANT:
+- In BOTH Authorities and Contents, column D is the Decision column. Set its width to at least 20 Excel character units (prefer 22) so the full words Accept, Edit, and Reject are always visible without truncation. Never leave column D at a narrow default width. Keep its header visible and readable as well.
+- Give Decision cells 12-point or larger readable text, center the value horizontally and vertically, and use a comfortable row height (at least 24 points where practical). Do NOT shrink the decision text to fit. Use text wrapping where useful, especially in long citation, heading, AI suggestion, and Why columns.
+- Add an Excel data-validation dropdown to populated Decision cells with EXACT allowed choices Accept,Edit,Reject. Prepopulate each confident/correct row with Accept; do not leave confident rows undecided. Make each exceptional, unresolved Decision cell BLANK (never fabricate a fourth choice such as Review) and shade it a pale yellow/orange so the attorney will see that it requires attention; spell out the issue in Why. You may shade approved Decision cells pale green for scanability, but avoid garish colors.
+- Freeze the header row on Authorities and Contents, add filters if feasible, make source/AI suggestion/Why columns wide enough to review their content, and use wrapped rows so text remains accessible.
+- Check before delivery that all rows have either Accept, Edit, Reject, or an intentionally blank flagged Decision cell; check the Decision column is actually wide and readable on BOTH sheets.
+
+This is an attorney REVIEW spreadsheet. Default Accept means the AI sees no obvious issue; it is not independent legal verification and the attorney may change ANY decision before final generation. The HipoLaw desktop app will stop if any Decision cell is still blank, requiring explicit resolution of exceptions before producing a filing.
+
+Do not change the prescribed sheet names/column headers. Do NOT include a fifth sheet. Do not create a PDF or Word document. Save one finished Excel review workbook and deliver a download link to the .xlsx workbook, briefly noting material uncertainties and the number of rows left blank for attorney review.
