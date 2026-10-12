@@ -10,7 +10,7 @@ import json
 import tempfile
 import fitz
 
-SCRIPT = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_7.py'
+SCRIPT = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_8.py'
 spec = importlib.util.spec_from_file_location('hipolaw_v16', SCRIPT)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)

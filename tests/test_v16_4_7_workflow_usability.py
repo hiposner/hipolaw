@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 from types import SimpleNamespace
 
-SRC = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_7.py'
+SRC = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_8.py'
 spec = importlib.util.spec_from_file_location('hipolaw_ui_1647', SRC)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
@@ -43,17 +43,17 @@ class TestFileOrganization(unittest.TestCase):
 
     def test_default_final_folder_has_stable_short_name(self):
         self.assertEqual(mod.suggested_output_folder(self.prepared),
-                         'Sample Opposition_HipoLaw_Final')
+                         'Sample Opposition - Final')
         self.assertEqual(mod.suggested_output_folder(self.orig),
-                         'Sample Opposition_HipoLaw_Final')
+                         'Sample Opposition - Final')
         self.assertEqual(mod.generated_output_stem(self.prepared),'Sample Opposition')
 
     def test_filing_folder_cannot_overwrite_unrelated_files(self):
-        folder=self.root/'Sample Opposition_HipoLaw_Final'
+        folder=self.root/'Sample Opposition - Final'
         folder.mkdir()
-        (folder/'HipoLaw_AUDIT.txt').write_text('existing')
-        expected={'HipoLaw_AUDIT.txt','Sample Opposition_With_Tables.docx',
-                  'Sample Opposition_With_Tables.pdf','_PDF_CITATION_AUDIT.tmp',
+        (folder/'Final Audit.txt').write_text('existing')
+        expected={'Final Audit.txt','Motion with Tables.docx',
+                  'Motion with Tables.pdf','_PDF_CITATION_AUDIT.tmp',
                   '_CITATION_COVERAGE.tmp'}
         with self.assertRaises(FileExistsError):
             mod.verify_reusable_filing_folder(folder,expected)
@@ -68,7 +68,7 @@ class TestFileOrganization(unittest.TestCase):
         import openpyxl
         original=self.orig
         excel=self.download
-        final=self.root/'Sample Opposition_HipoLaw_Final'
+        final=self.root/'Sample Opposition - Final'
         def progress(_line):
             (final/'_PDF_CITATION_AUDIT.tmp').write_text('scratch')
             (final/'_CITATION_COVERAGE.tmp').write_text('scratch')
@@ -85,8 +85,8 @@ class TestFileOrganization(unittest.TestCase):
                 mod.run(original,excel,output_parent=self.root,
                         progress_callback=progress)
         self.assertEqual({p.name for p in final.iterdir()},
-                         {'Sample Opposition_With_Tables.docx','HipoLaw_AUDIT.txt'})
-        self.assertIn('ERROR:',(final/'HipoLaw_AUDIT.txt').read_text())
+                         {'Motion with Tables.docx','Final Audit.txt'})
+        self.assertIn('ERROR:',(final/'Final Audit.txt').read_text())
 
     def test_source_original_is_located_by_hash(self):
         self.assertEqual(mod.preferred_review_folder(self.prepared), self.root)

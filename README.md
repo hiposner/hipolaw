@@ -2,18 +2,18 @@
 
 Windows desktop workflow for preparing legal motions and generating tables of contents and authorities from approved Excel review workbooks.
 
-**Current version:** V16.4.7 (source build; not a signed or independently certified filing application).
+**Current version:** V16.4.8 (source build; not a signed or independently certified filing application).
 
 ## Three-step workflow
-1. **Prepare** a working Word document; optionally align text to a 28-line pleading-paper grid. The original document is not overwritten.
+1. **Prepare** a working Word document and one preparation audit (no saved preview PDF); optionally align the motion to a 28-line pleading-paper grid. The original document is never overwritten.
 2. **Review** citations and headings using the editable ChatGPT prompt and Excel workbook.
-3. **Generate** a single final folder containing the combined Word document, matching PDF/A, and one consolidated audit. The selected review XLSX can be filed beside the original motion automatically when its SHA256 matches.
+3. **Generate** a final folder with exactly three files: `Motion with Tables.docx`, `Motion with Tables.pdf`, and `Final Audit.txt`. A citation spanning two physical pages is credited to its starting page. The review workbook can be copied beside the original motion after SHA256 verification.
 
 ## Build on Windows
 
 Requires Windows, desktop Microsoft Word, Python 3.10+ and internet access to install dependencies.
 
-Double-click `BUILD_V16_4_7.bat`, then launch `dist\HipoLaw_v16_4_7.exe`. See [V16.4.7 instructions](README_WINDOWS_V16_4_7.md).
+Double-click `BUILD_V16_4_8.bat`, then launch `dist\HipoLaw_v16_4_8.exe`. See [V16.4.8 instructions](README_WINDOWS_V16_4_8.md).
 
 `HipoLaw_Style_Settings.json` and `HipoLaw_ChatGPT_Prompt.txt` can be edited without rebuilding the executable. Changes to Python logic require a rebuild.
 

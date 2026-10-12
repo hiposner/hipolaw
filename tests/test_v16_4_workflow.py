@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 BASE=Path(__file__).resolve().parents[1]
-spec=importlib.util.spec_from_file_location('hipolaw_v164',BASE/'generate_legal_tables_v16_4_7.py')
+spec=importlib.util.spec_from_file_location('hipolaw_v164',BASE/'generate_legal_tables_v16_4_8.py')
 mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
 SOURCE=Path('/mnt/data/2026-10-11 Opp. to Motion for Judgment DRAFT 5 DC.docx')
 APPROVED=Path('/mnt/data/La_Motte_Opposition_V15_Corrected_Headings.xlsx')
@@ -47,8 +47,9 @@ class TestV164GuidedWorkflow(unittest.TestCase):
         self.assertTrue(word.doc.closed)
         self.assertEqual(mod.sha256_file(self.source),self.sourcehash)
         self.assertTrue(result['prepared'].exists())
-        self.assertTrue(result['preview'].exists())
-        self.assertTrue(result['manifest'].exists())
+        self.assertIsNone(result['preview'])
+        self.assertTrue(result['audit'].exists())
+        self.assertEqual(sorted(p.name for p in result['folder'].iterdir()),['Preparation Audit.txt','Prepared Motion.docx'])
         grid.assert_called_once()
         self.assertEqual(grid.call_args.kwargs['enabled'],align)
         return result
@@ -74,7 +75,8 @@ class TestV164GuidedWorkflow(unittest.TestCase):
         self.assertEqual(m['prepared_sha256'],r['hash'])
         self.assertEqual(m['original_sha256'],self.sourcehash)
         self.assertEqual(m['first_body_heading'],'INTRODUCTION')
-        self.assertTrue(str(r['preview']).endswith('PREVIEW_NOT_FOR_FILING.pdf'))
+        self.assertIsNone(r['preview'])
+        self.assertFalse(any(p.suffix.lower()=='.pdf' for p in r['folder'].iterdir()))
 
     def test_generated_prompt_contains_exact_hash_filename_and_grid(self):
         r=self.create_prepared(True)
