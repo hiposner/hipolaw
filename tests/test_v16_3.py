@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import patch, Mock
 
 APP=Path(__file__).resolve().parents[1]
-SCRIPT=APP/'generate_legal_tables_v16_4_8.py'
+SCRIPT=APP/'generate_legal_tables_v16_4_9.py'
 spec=importlib.util.spec_from_file_location('hipolaw_v163',SCRIPT)
 mod=importlib.util.module_from_spec(spec)
 sys.modules[spec.name]=mod
@@ -59,6 +59,7 @@ class FakeRange:
         self.Start=pos
         self.ParagraphFormat=FakeFormat()
         self._table=in_table
+        self.InlineShapes=type('Inlines',(),{'Count':0})()
     def Information(self,n):
         assert n==12
         return self._table
@@ -96,7 +97,7 @@ class TestWholeMotionCOMFormatting(unittest.TestCase):
         for p in [d.body[0],d.body[1],d.body[3]]:
             fmt=p.Range.ParagraphFormat
             self.assertEqual((fmt.SpaceBefore,fmt.SpaceAfter,fmt.LineSpacingRule,fmt.LineSpacing),(0,0,4,24))
-        self.assertIn('Footnotes', '\n'.join(log))
+        self.assertIn('body paragraphs', '\n'.join(log))
 
     def test_no_source_grid_stops(self):
         with self.assertRaisesRegex(ValueError,'28-line'):

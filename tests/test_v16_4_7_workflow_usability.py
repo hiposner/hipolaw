@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 from types import SimpleNamespace
 
-SRC = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_8.py'
+SRC = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_9.py'
 spec = importlib.util.spec_from_file_location('hipolaw_ui_1647', SRC)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)

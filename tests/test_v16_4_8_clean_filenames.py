@@ -9,7 +9,7 @@ from unittest.mock import patch
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
-spec=importlib.util.spec_from_file_location('hipolaw_1648',ROOT/'generate_legal_tables_v16_4_8.py')
+spec=importlib.util.spec_from_file_location('hipolaw_1648',ROOT/'generate_legal_tables_v16_4_9.py')
 app=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(app)
 
@@ -136,7 +136,7 @@ class FinalOutputNaming(unittest.TestCase):
         self.assertEqual(app.generated_output_stem(Path('Motion 1_HipoLaw_Prepared.docx')),'Motion 1')
         self.assertEqual(app.generated_output_stem(Path('Motion 1 - Prepared.docx')),'Motion 1')
         # The final files are deliberately independent of a long source filename.
-        source=Path(__file__).resolve().parents[1]/'generate_legal_tables_v16_4_8.py'
+        source=Path(__file__).resolve().parents[1]/'generate_legal_tables_v16_4_9.py'
         text=source.read_text(encoding='utf-8')
         self.assertIn("output=folder/'Motion with Tables.docx'",text)
         self.assertIn("pdf=folder/'Motion with Tables.pdf'",text)

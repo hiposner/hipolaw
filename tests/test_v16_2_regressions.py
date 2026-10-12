@@ -10,7 +10,7 @@ import json
 import tempfile
 import fitz
 
-SCRIPT = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_8.py'
+SCRIPT = Path(__file__).resolve().parents[1] / 'generate_legal_tables_v16_4_9.py'
 spec = importlib.util.spec_from_file_location('hipolaw_v16', SCRIPT)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
@@ -18,26 +18,26 @@ spec.loader.exec_module(mod)
 
 class TestTocContract(unittest.TestCase):
     def test_first_level_number(self):
-        self.assertEqual(mod.toc_display_label('I.', 'INTRODUCTION'), 'I INTRODUCTION')
-        self.assertEqual(mod.toc_display_label('IV.', 'ARGUMENT'), 'IV ARGUMENT')
+        self.assertEqual(mod.toc_display_label('I.', 'INTRODUCTION'), 'I. INTRODUCTION')
+        self.assertEqual(mod.toc_display_label('IV.', 'ARGUMENT'), 'IV. ARGUMENT')
 
     def test_sublevel_number(self):
         self.assertEqual(mod.toc_display_label('A.', 'The Rule 50 motion fails.'),
-                         'A The Rule 50 motion fails')
+                         'A. The Rule 50 motion fails')
         self.assertEqual(mod.toc_display_label('ii.', 'Qualified immunity was waived.'),
-                         'ii Qualified immunity was waived')
+                         'ii. Qualified immunity was waived')
 
     def test_period_inside_closing_quote(self):
         self.assertEqual(mod.toc_display_label('iv.', 'Evidence of malice was not “none.”'),
-                         'iv Evidence of malice was not “none”')
+                         'iv. Evidence of malice was not “none”')
 
     def test_internal_punctuation_preserved(self):
         self.assertEqual(mod.toc_display_label('iii.', 'The U.S. Court ruled. Again.'),
-                         'iii The U.S. Court ruled. Again')
+                         'iii. The U.S. Court ruled. Again')
 
     def test_number_is_not_generated_from_position(self):
         # A numbering gap/restart in the source is carried through literally.
-        self.assertEqual(mod.toc_display_label('VII.', 'CONCLUSION'), 'VII CONCLUSION')
+        self.assertEqual(mod.toc_display_label('VII.', 'CONCLUSION'), 'VII. CONCLUSION')
 
     def test_no_continued_heading_source(self):
         self.assertNotIn('(continued)', mod.make_prelim_text([{'category': 'Case'}]))

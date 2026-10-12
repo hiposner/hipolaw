@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 BASE=Path(__file__).resolve().parents[1]
-spec=importlib.util.spec_from_file_location('hipolaw_nested',BASE/'generate_legal_tables_v16_4_8.py')
+spec=importlib.util.spec_from_file_location('hipolaw_nested',BASE/'generate_legal_tables_v16_4_9.py')
 mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 
 class Range:
